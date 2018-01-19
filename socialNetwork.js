@@ -51,3 +51,29 @@ var followMost = function() {
 console.log(followMost());
 
 
+//who has the most follower
+var mostFollower = function() {
+  var followerList = [];
+  for(var id in data) {
+    followerList[id] = 0;
+    for(var id1 in data) {
+      var follows = data[id1].follows;
+      follows.forEach(function(follow) {
+        if(id === follow) {
+          followerList[id] += 1;
+        }
+      });
+    }
+  }
+  var vals = Object.keys(followerList).map(function(key) {
+    return followerList[key];
+  });
+
+  var max = Math.max(...vals);
+  return Object.keys(followerList).filter(function(follow){
+    return followerList[follow] === max;
+  });
+return followerList;
+};
+console.log(mostFollower());
+
