@@ -47,7 +47,7 @@ var followMost = function() {
 
   });
 };
-
+console.log("Who follows the most people");
 console.log(followMost());
 
 
@@ -75,6 +75,7 @@ var mostFollower = function() {
   });
   return followerList;
 };
+console.log("Who has the most follower:");
 console.log(mostFollower());
 
 ////Identify who follows the most people above 30
@@ -97,6 +98,7 @@ var followMostAbove30 = function() {
   });
 
 };
+console.log("Has most follow above 30:");
 console.log(followMostAbove30());
 
 //who has the most follower above 30
@@ -125,6 +127,7 @@ var mostFollowerAbove30 = function() {
   return data[id].age > 30;
 });
 };
+console.log("Most followers above 30:");
 console.log(mostFollowerAbove30());
 
 //indentify who follow someone that doesn't follow them back
@@ -146,4 +149,32 @@ return(notFollowList);
 };
 console.log("Who doesnot follow back:");
 console.log(notFollowBack());
+
+
+//list all the name who follow and who follow them
+
+var listFollowFollower = function() {
+  var followFollowerList = {};
+  for(var id in data) {
+    followFollowerList[id] = {
+      name: data[id].name,
+      follows: [],
+      followers: []
+
+    };
+    data[id].follows.forEach(function(follow) {
+      followFollowerList[id].follows.push(data[follow].name);
+    });
+    for(var idNext in data) {
+      data[idNext].follows.forEach(function(follow) {
+        if(follow === id) {
+          followFollowerList[id].followers.push(data[idNext].name);
+        }
+      });
+    }
+  }
+  return followFollowerList;
+};
+console.log("List of follower and Follow:");
+console.log(listFollowFollower());
 
