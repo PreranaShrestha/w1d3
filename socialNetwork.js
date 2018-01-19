@@ -127,3 +127,23 @@ var mostFollowerAbove30 = function() {
 };
 console.log(mostFollowerAbove30());
 
+//indentify who follow someone that doesn't follow them back
+var notFollowBack = function() {
+  var notFollowList = {};
+  for(var keys in data) {
+    notFollowList[keys] = [];
+    var follows = data[keys].follows;
+    follows.forEach(function(key) {
+      var listFollow = data[key].follows.filter(follow => {
+          return follow === keys ;
+      });
+      if(!(listFollow.length > 0)){
+        notFollowList[keys].push(key);
+      }
+    });
+  }
+return(notFollowList);
+};
+console.log("Who doesnot follow back:");
+console.log(notFollowBack());
+
