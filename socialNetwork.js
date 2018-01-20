@@ -178,3 +178,24 @@ var listFollowFollower = function() {
 console.log("List of follower and Follow:");
 console.log(listFollowFollower());
 
+// List of everyone and their reach
+var listOfReach = function () {
+  var follower;
+  var reach = {};
+  for (var id in data) {
+    reach[id] = [];
+    for (var id1 in data) {
+      follower = data[id1].follows.filter(function (follow) {
+        return follow === id;
+      });
+      if (follower.length !== 0) {
+          reach[id].push(id1);
+      }
+    }
+
+  }
+  return(reach);
+}
+console.log("List of everyone and their reach");
+console.log(listOfReach());
+
